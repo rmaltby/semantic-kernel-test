@@ -11,18 +11,26 @@ This project experiments with the semantic kernel package and extends the functi
 * `semantic-kernel` package (`pip install semantic-kernel`)
 * `torch` library for tensor operations
 * `transformers` library for LLM functionality
+* Ollama and an LLM model that can run on your local hardware
 
 ### Usage
 
-To use this project, simply run the provided code and follow the output. The tool call will provide a response to your original question.
+This project was developed using [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/).
+- Install Ollama
+- Clone the repo
+- Run Ollama (`ollama serve &`) and pull an appropriate model (`ollama pull llama3.2:1b`)
+- Install uv (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
+- In the cloned directory, run `uv run main.py`
+
+Chat with the bot, it can currently control and report the status of 3 imaginary lights.  Type `exit` to end the session.  Don't forget to `fg && ^C` to kill the running ollama session when you're done.
 
 ### Example Tool Call Response
 
 ```
-{ "type": "function", "function": "Lights-get_lights", "parameters": { } }
+{\"name\": \"Lights-change_state\", \"parameters\": {"\"id\": 1, \"is_on\": false}
 ```
 
-This tool call retrieves the current state of the lights from the `lights` module.
+This tool call changes the current state of the light with id=1 from the `lights` module.
 
 ### How it Works
 
